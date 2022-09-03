@@ -38,14 +38,26 @@ app.post("/ok", (req, res) => {
 		db.collection("board").insertOne(data, (err, result) => {
 			if (err) return console.log(err)
 			
+			/**
+			 * $inc: increase
+			 */
+			db.collection("counter").updateOne({name: "boardCounter"}, {$inc: {totalPost: 1}})
 			res.redirect("/list")
 		})
 	})
 })
 
 app.get("/list", (req, res) => {
-	/**
-	 * if file in views auto render.
-	 */
-	res.render("list.ejs")
+	db.collection("board").find().sort({"_id": -1}).toArray((err, result) => {
+		/**
+		 * if file in views auto render.
+		 */
+		res.render("list.ejs", {result: result})
+	})
+})
+
+app.get("/detail/:id", (req, res) => {
+	db.collection("board").findOne({"_id": parseInt(req.params.id)}, (err, result) => {
+		res.render("detail.ejs", {result: result})
+	})
 })

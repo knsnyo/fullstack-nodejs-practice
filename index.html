@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <style>
+    /*
     body {
       display: flex;
       justify-content: center;
@@ -13,10 +17,85 @@
       width: 100vw;
       height: 100vh;
       overflow: hidden;
+      flex-direction: column;
     }
+    */
   </style>
 </head>
 <body>
-  <h4>이게 화면이란 것이다.</h4>
+  <!--header-->
+  <div class="jumbotron" style="background-color: #000; color: #fff; height: 250px;">
+    <h1 class="display-4" style="font-size: 40px; font-weight: bold;">안녕! 클레오파트라!</h1>
+    <p class="lead">세상에서 제일 가는 포테이토 칩</p>
+  </div>
+  <!--header-->
+  <!--menu-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: -32px;">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Intro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/list">Board</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!--menu-->
+  <!--section-->
+  <div style="width: 90%; margin: 0 auto;">
+    <div class="card-deck" style="margin: 50px 0;">
+      <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold; font-size: 20px;">안녕! 클레오파트라</h5>
+          <p class="card-text">세상에서 제일 가는 포테이토 칩</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold; font-size: 20px;">안녕! 클레오파트라</h5>
+          <p class="card-text">세상에서 제일 가는 포테이토 칩</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+      <div class="card">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold; font-size: 20px;">안녕! 클레오파트라</h5>
+          <p class="card-text">세상에서 제일 가는 포테이토 칩</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--section-->
+  <!--footer -->
+  <div class="jumbotron jumbotron-fluid" style="height: 150px; background-color: #000; color: #fff">
+    <div class="container" style="height: 80px;">
+      <p class="lead">안녕! 클레오파트라! 세상에서 제일 가는 포테이토 칩</p>
+    </div>
+  </div>
+  <!--footer-->
+  <!--script-->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+  <!--script-->
 </body>
 </html>

@@ -14,16 +14,21 @@
 		<%- include("menu.ejs") %>
 		<div style="width:90%; margin: 0 auto">
 			<h3 style="font-weight: bold;">Board</h3>
-			<div class="list-group" style="margin-bottom: 20px;">
-				<a class="list-group-item list-group-item-action active disabled" aria-current="true">
-				Title
-				</a>
-				<% for (let i = 0; i < result.length; i += 1) {%>
-					<a href="/detail/<%- result[i]._id %>" class="list-group-item list-group-item-action"><%- result[i].title %> / <%- result[i].name %> / <%- result[i].description %></a>
-				<% } %> 
-			</div>
-			<div style="margin-bottom: 20px; text-align: right;">
-				<a href="/write" class="btn btn-dark">Write</a>
+			<div class="card text-center">
+				<div class="card-header">
+					<%- result.title %><br>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title"><%- result.name %><br></h5>
+					<p class="card-text"><%- result.description %></p>
+					<a href="/write" class="btn btn-dark">write</a>
+					<a href="/list" class="btn btn-dark">back</a>
+					<a href="/edit/<%- result._id %>" class="btn btn-success">Edit</a>
+					<a href="/delete/<%- result._id %>" class="btn btn-danger">Delete</a>
+				</div>
+				<div class="card-footer text-muted">
+					<%- result.reservation %><br>
+				</div>
 			</div>
 		</div>
 		<%- include("footer.ejs") %>
