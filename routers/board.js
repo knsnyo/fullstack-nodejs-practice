@@ -1,8 +1,9 @@
+/** board router */
 const router = require("express").Router()
 
+/** mongoDB */
 const MONGO_URI = "mongodb+srv://admin:qwer1234@cluster0.kiv0sog.mongodb.net/?retryWrites=true&w=majority"
 let db
-
 const mongoClient = require("mongodb").MongoClient
 mongoClient.connect(MONGO_URI, (err, client) => {
 	if (err) return console.log(err)
@@ -10,6 +11,7 @@ mongoClient.connect(MONGO_URI, (err, client) => {
 	db = client.db("nodeapp")
 })
 
+/** rendering */
 router.get("/", (req, res) => {
 	res.redirect("/board/list")
 })
@@ -18,6 +20,27 @@ router.get("/write", (req, res) => {
 	res.render("./board/write.ejs")
 })
 
+router.get("/list", (req, res) => {
+	db.collection("board").find().sort({"_id": -1}).toArray((err, result) => {
+		res.render("./board/list.ejs", {result: result})
+	})
+})
+
+router.get("/detail/:id", (req, res) => {
+	db.collection("board").findOne({"_id": parseInt(req.params.id)}, (err, result) => {
+		res.render("./board/detail.ejs", {result: result})
+	})
+})
+
+router.get("/edit/:id", (req, res) => {
+	db.collection("board").findOne({
+		"_id": parseInt(req.params.id)
+	}, (err, result) => {
+		res.render("./board/edit.ejs", {result: result})
+	})
+})
+
+/** action */
 router.post("/write", (req, res) => {
 	db.collection("counter").findOne({
 		name: "boardCounter"
@@ -36,29 +59,6 @@ router.post("/write", (req, res) => {
 			db.collection("counter").updateOne({name: "boardCounter"}, {$inc: {totalPost: 1}})
 			res.redirect("/board/list")
 		})
-	})
-})
-
-router.get("/list", (req, res) => {
-	db.collection("board").find().sort({"_id": -1}).toArray((err, result) => {
-		/**
-		 * if file in views auto render.
-		 */
-		res.render("./board/list.ejs", {result: result})
-	})
-})
-
-router.get("/detail/:id", (req, res) => {
-	db.collection("board").findOne({"_id": parseInt(req.params.id)}, (err, result) => {
-		res.render("./board/detail.ejs", {result: result})
-	})
-})
-
-router.get("/edit/:id", (req, res) => {
-	db.collection("board").findOne({
-		"_id": parseInt(req.params.id)
-	}, (err, result) => {
-		res.render("./board/edit.ejs", {result: result})
 	})
 })
 
