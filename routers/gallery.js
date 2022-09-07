@@ -25,7 +25,13 @@ mongoClient.connect(MONGO_URI, (err, client) => {
 
 /** render */
 router.get("/", (req, res) => {
-	res.send("gallery")
+	res.redirect("/gallery/list")
+})
+
+router.get("/list", (req, res) => {
+	db.collection("photo").find().sort({"_id": -1}).toArray((err, result) => {
+		res.render("./gallery/list.ejs", {result: result})
+	})
 })
 
 router.get("/write", (req, res) => {
@@ -49,9 +55,16 @@ router.post("/write", upload.single("file"), (req, res) => {
 			if (err) return console.log(err)
 
 			db.collection("counter").updateOne({name: "photoCounter"}, {$inc: {totalPost: 1}})
-			res.redirect("/gallery")
+			res.redirect("/gallery/list")
 		})
 	})
+})
+
+router.delete("/delete", (req, res) => {
+	db.collection("photo").deleteOne(parseInt(req.body), (err, result) => {
+		
+	})
+	res.send("delete success")
 })
 
 module.exports = router

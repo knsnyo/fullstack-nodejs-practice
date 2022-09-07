@@ -2,6 +2,9 @@
 const express = require("express")
 const app = express()
 
+/** use public => load image */
+app.use(express.static("public"))
+
 /** using put method */
 const methodOverride = require("method-override")
 app.use(methodOverride("_method"))
@@ -22,6 +25,7 @@ app.listen(5000, (req, res) => {
 	console.log("running server")
 })
 
+/** home */
 app.get("/", (req, res) => {
 	res.render("index.ejs")
 })

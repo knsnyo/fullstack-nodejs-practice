@@ -40,6 +40,11 @@ router.get("/edit/:id", (req, res) => {
 	})
 })
 
+router.get("/search", (req, res) => {
+	console.log(req.query)
+	res.redirect("/board/list")
+})
+
 /** action */
 router.post("/write", (req, res) => {
 	db.collection("counter").findOne({
@@ -72,6 +77,14 @@ router.put("/edit", (req, res) => {
 		description: req.body.description,
 		reservation: req.body.reservation,
 	}}, (err, result) => {
+		res.redirect("/board/detail/" + req.body.id)
+	})
+})
+
+router.get("/delete/:id", (req, res) => {
+	db.collection("board").deleteOne({
+		"_id": parseInt(req.params.id)
+	}, (err, result) => {
 		res.redirect("/board/list")
 	})
 })
