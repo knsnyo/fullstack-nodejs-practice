@@ -40,9 +40,23 @@ router.get("/edit/:id", (req, res) => {
 	})
 })
 
+/*/ I want to change req.query.value -> req.params.item?
 router.get("/search", (req, res) => {
-	console.log(req.query)
-	res.redirect("/board/list")
+	db.collection("board").find({
+		title: RegExp(req.query.value)
+	}).toArray((err,result) => {
+		res.render("./board/list.ejs", {result: result})
+	})
+})
+*/
+
+// change req.query.value -> req.params.item
+router.get("/search/:item", (req, res) => {
+	db.collection("board").find({
+		title: RegExp(req.params.item)
+	}).toArray((err,result) => {
+		res.render("./board/list.ejs", {result: result})
+	})
 })
 
 /** action */

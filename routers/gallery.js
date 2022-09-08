@@ -60,11 +60,12 @@ router.post("/write", upload.single("file"), (req, res) => {
 	})
 })
 
-router.delete("/delete", (req, res) => {
-	db.collection("photo").deleteOne(parseInt(req.body), (err, result) => {
-		
+router.get("/delete/:id", (req, res) => {
+	db.collection("photo").deleteOne({"_id": parseInt(req.params.id)}, (err, result) => {
+		if (err) return console.log(err)
+
+		res.redirect("/gallery/list")
 	})
-	res.send("delete success")
 })
 
 module.exports = router
